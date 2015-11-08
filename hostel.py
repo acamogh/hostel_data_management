@@ -21,15 +21,42 @@ def byteify(input):
 def hello():
     return render_template('main.html')
 
+
 @app.route("/login", methods=['GET','post'])
 def login_details():
     error=None
     username = request.form['username']
     password = request.form['password']
     if username == 'qw' and password == 'qw':
-        return send_file('static/templates/admin.html')
+        session['logged_in'] = True
+        return send_file('static/templates/data_entry.html')
     error = "Invalid usernae or password"
     return render_template('main.html',error=error)
+
+
+
+@app.route("/show_data")
+def show_data():
+    return send_file('static/templates/show_data.html')
+
+@app.route("/student_datails", methods=['POST'])
+def student_datails():
+    name=request.form['student_name']
+    number=request.form['register_number']
+    coll_name=request.form['college_name']
+    town=request.form['home_town']
+
+    print name,number,coll_name,town
+    return ('',203)
+
+
+
+
+
+@app.route("/logout")
+def logout():
+    session.pop('logged_in',False)
+    return redirect(url_for('hello'))
 
 if __name__ == "__main__":
     app.run(debug=True)

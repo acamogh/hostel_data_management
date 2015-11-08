@@ -19,11 +19,31 @@
 		<script src="static/controller.js"></script>
 	</head>
 	<body>
-
-
-<div ng-view></div>
-<div >  <h3 style="color:red; padding-top:1%" class="text-center">{{error}}</h3></div>
-	
-
+    <div ng-controller="login_page_ctrl" style="padding-top:10%" id="loginModal" class="modal show" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">         
+              <h1 class="text-center">Admin Login</h1>          
+          </div>
+          <div class="modal-body">
+              <form class="form col-md-12 center-block" method="POST" action="/login">
+                <div class="form-group">
+                  <input type="text" class="form-control input-lg" name="username" placeholder="Username" ng-model="admin.username">
+                </div>
+                <div class="form-group">
+                  <input type="password" class="form-control input-lg" name="password" placeholder="Password" ng-model="admin.password">
+                </div>
+                <div class="form-group">
+                  <input ng-click="loginpage_submit()" class="btn btn-primary btn-lg btn-block" type="submit">
+                </div>
+              </form>
+          </div>
+          <div class="modal-footer">
+              <div class="col-md-12 text-center">       
+          </div>  
+          </div>
+      </div>
+      </div>
+    </div>	
 	</body>
 </html>
